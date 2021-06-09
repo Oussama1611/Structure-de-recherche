@@ -17,6 +17,7 @@ function SeConnecter(props) {
         alert(response.data.error);
       } else {
         sessionStorage.setItem("accessToken", response.data);
+        console.log(response.data);
         history.push("/");
       }
     });
@@ -45,7 +46,7 @@ function SeConnecter(props) {
           setPassword(event.target.value);
         }}
       />
-      <button className="login-form__button" type="submit">
+      <button className="login-form__button" type="submit" onClick={login}>
         Se connecter
       </button>
       <div class="login-forgot-password">
