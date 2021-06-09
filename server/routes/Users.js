@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
   if (!user) res.json({ error: "Utilisatuer introuvable" });
 
   bcrypt.compare(password, user.password).then((match) => {
-    if (!match) res.json({ error: "Utilisatuer ou mot de passe est incorrect !" });
+    if (!match) res.json({ error: "Mot de passe est incorrect !" });
 
     res.json("Bienvenue");
   });

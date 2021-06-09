@@ -19,11 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       }
       
     });
-  
-    Labos.associate = (models) => {
-      Labos.hasMany(models.Teams, {
-        onDelete: "cascade",
-      });
-    };
+
     return Labos;
   };

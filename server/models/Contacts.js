@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      full_name : {
+        type : DataTypes.STRING,
+        allowNull : false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -16,10 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     });
   
     Contacts.associate = (models) => {
-      Contacts.belongsTo(models.Users, {
-        foreignKey: "username",
-        targetKey: "username"
-      });
+      Contacts.belongsTo(models.Users
+      );
     };
     return Contacts;
   };
