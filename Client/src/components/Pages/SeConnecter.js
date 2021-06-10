@@ -3,7 +3,8 @@ import { Button } from "../Button";
 import Navbar from "../Navbar";
 import "./SeConnecter.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import ForgotPassword from "./ForgotPassword";
 
 function SeConnecter(props) {
   const [username, setUsername] = useState("");
@@ -17,7 +18,6 @@ function SeConnecter(props) {
         alert(response.data.error);
       } else {
         sessionStorage.setItem("accessToken", response.data);
-        console.log(response.data);
         history.push("/");
       }
     });
@@ -29,7 +29,7 @@ function SeConnecter(props) {
       <label>Nom d'utilisateur</label>
       <input
         className="login-form__input"
-        type="text"
+        type="email"
         name="username"
         placeholder="Nom d'utilisateur"
         onChange={(event) => {
@@ -50,9 +50,9 @@ function SeConnecter(props) {
         Se connecter
       </button>
       <div class="login-forgot-password">
-        <a class="login-form__link" href="./">
+        <Link class="login-form__link" to="/forgot-password">
           Mot de passe oublié?
-        </a>
+        </Link>
       </div>
     </div>
   );
