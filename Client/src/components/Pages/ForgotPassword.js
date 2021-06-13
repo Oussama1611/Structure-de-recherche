@@ -13,16 +13,15 @@ function ForgotPassword() {
     const data = {
       username: username,
       password: password,
-      confirmPassword: confirmPassword,
+      confirmPassword: confirmPassword
     };
-    axios
-      .post("http://localhost:3001/auth/forgot-password", data)
-      .then((response) => {
+    axios.post("http://localhost:3001/auth/forgot-password", data).then((response) => {
         if (response.data.error) {
           alert(response.data.error);
         } else {
           sessionStorage.setItem("accessToken", response.data);
-          history.push("/");
+          alert(response.data);
+          history.push("/se-connecter");
         }
       });
   };
@@ -33,8 +32,11 @@ function ForgotPassword() {
       <input
         className="login-form__input"
         type="email"
+        autoComplete="off"
         name="username"
         placeholder="Nom d'utilisateur"
+        onChange={(event) => {
+          setUsername(event.target.value);}}
       />
       <label>Nouveau mot de passe</label>
       <input

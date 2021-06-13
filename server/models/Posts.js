@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      supportfile_path :{
+        type: DataTypes.STRING,
+        allowNull:true,
+      },
       type: {
         type: DataTypes.STRING,
         allowNull: false,

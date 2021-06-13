@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Button } from "../Button";
-import Navbar from "../Navbar";
+import React, { useState, useContext } from "react";
 import "./SeConnecter.css";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import ForgotPassword from "./ForgotPassword";
+import { AuthContext } from "../../helpers/AuthContext";
 
-function SeConnecter(props) {
+function SeConnecter() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const  { setAuthState } = useContext(AuthContext);
+
   let history = useHistory();
 
   const login = () => {
@@ -17,7 +17,8 @@ function SeConnecter(props) {
       if (response.data.error) {
         alert(response.data.error);
       } else {
-        sessionStorage.setItem("accessToken", response.data);
+        localStorage.setItem("accessToken", response.data);
+        setAuthState(true);
         history.push("/");
       }
     });
@@ -30,6 +31,7 @@ function SeConnecter(props) {
       <input
         className="login-form__input"
         type="email"
+        autoComplete="off"
         name="username"
         placeholder="Nom d'utilisateur"
         onChange={(event) => {

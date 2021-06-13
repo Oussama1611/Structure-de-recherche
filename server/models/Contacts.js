@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         type : DataTypes.STRING,
         allowNull : false,
       },
+      photo_path : {
+        type: DataTypes.STRING,
+        allowNull:true
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -16,12 +20,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      site_personnel: {
+        type : DataTypes.STRING,
+        allowNull: true,
+      }
       
     });
   
     Contacts.associate = (models) => {
-      Contacts.belongsTo(models.Users
-      );
+      models.Users.hasOne(Contacts,
+        {foreignKey: {
+          allowNull: false}
+    });
+      Contacts.belongsTo(models.Users);
     };
     return Contacts;
   };

@@ -5,10 +5,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       member_type: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      member: {
+      permanent_or_no :{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      member_name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -21,13 +25,22 @@ module.exports = (sequelize, DataTypes) => {
       }
       
     });
-  
+   //----------------------
     Members.associate = (models) => {
       Members.belongsTo(models.Teams, {
         foreignKey: "team_key",
         targetKey: "key"
       });
     };
+    //----------------------
+    Members.associate = (models) => {
+      models.Users.hasOne(Members,
+        {foreignKey: {
+          allowNull: false}
+    });
+      Members.belongsTo(models.Users);
+    };
+    
   
     return Members;
   };
