@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Card.css";
-import { Button } from "./Button";
+import Buttons from "./Buttons";
 
 function Card(props) {
+  const responsable = false;
   const [button, setButton] = useState(true);
   return (
     <div className="card_container">
@@ -16,23 +17,20 @@ function Card(props) {
           <p className="info">{props.email}</p>
         </div>
       </div>
-      <div className="buttons">
-        <div className="first_button">
-          <button className="login-form__button" type="submit">
-            Publier
-          </button>
+      {responsable ? (
+        <div>
+          <Buttons button={"Publier"} />
+          <Buttons button={"Supprimer"} />
+          <Buttons button={"Modifier le profil"} />
         </div>
-        <div className="second_button">
-          <button className="login-form__button" type="submit">
-            Supprimer
-          </button>
+      ) : (
+        <div>
+          <Buttons button={"Publier"} />
+          <Buttons button={"Supprimer"} />
+          <Buttons button={"Modifier le profil"} />
+          <Buttons button={"Gerer les memebres"} />
         </div>
-        <div className="third_button">
-          <button className="login-form__button" type="submit">
-            Modifier le profil
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
