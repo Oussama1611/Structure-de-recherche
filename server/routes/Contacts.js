@@ -40,9 +40,9 @@ router.post("/changeProfilData/:id", validateToken,async (req, res) => {
 router.get("/profil/:id", async (req, res) => {
   const id = req.params.id;
 
-  const basicInfo = await Users.findByPk(id, {
-    attributes: { exclude: ["username"] },
-  });
+  const basicInfo = await Contacts.findOne(
+    {where:{UserId:id}}
+  );
   res.json(basicInfo);
 });
 

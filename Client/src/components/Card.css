@@ -21,7 +21,7 @@
   padding: 15px 15px;
   background-color: #ffffff;
   margin: 50px 0;
-  height: 200px;
+  height: 500px;
   box-shadow: 0 4px 5px rgb(0, 0, 0);
   text-align: left;
 }
@@ -61,7 +61,7 @@
 }
 
 .info {
-  margin: 20px 0;
+  margin: 20px 20px;
   color: #1a7e76;
 }
 
@@ -84,4 +84,4 @@
 
 .button {
   margin-top: 2px;
-}}
+}

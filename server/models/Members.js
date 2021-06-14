@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      more_info: {
+      bio: {
         type: DataTypes.STRING
       },
       username: {
