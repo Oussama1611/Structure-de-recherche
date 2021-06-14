@@ -61,15 +61,4 @@ router.post("/login", async (req, res) => {
     res.json(req.user);
   });
 
-/* Getting information of user for the profile page */
-router.get("/information/:id", async (req, res) => {
-  const id = req.params.id;
-
-  const info = await Users.findByPk(id, {
-    attributes: { exclude: ["password"] },
-  });
-
-  res.json(info);
-});
-
 module.exports = router;
