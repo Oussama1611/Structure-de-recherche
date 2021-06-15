@@ -18,22 +18,52 @@ function Card(props) {
           <p className="info">{props.email}</p>
         </div>
       </div>
-      <div class="login-forgot-password">
-        <Link to="/publier">
-          <button className="login-form__button" type="submit">
-            Publier
-          </button>
-        </Link>
-        <Link to="/supprimer-publication">
-          <button className="login-form__button" type="submit">
-            Supprimer
-          </button>
-        </Link>
-        <Link to="/modify-profile">
-          <button className="login-form__button" type="submit">
-            Modifier le profile
-          </button>
-        </Link>
+      <div>
+         
+        {responsable ? (
+          <>
+            //If responsable is connected then:
+            <Link to="/publier">
+              <button className="login-form__button" type="submit">
+                Publier
+              </button>
+            </Link>
+            <Link to="/supprimer-publication">
+              <button className="login-form__button" type="submit">
+                Supprimer
+              </button>
+            </Link>
+            <Link to="/modify-profile">
+              <button className="login-form__button" type="submit">
+                Modifier le profile
+              </button>
+            </Link>
+            <Link to="/gerer-les-membres">
+              <button className="login-form__button" type="submit">
+                Gerer les membres
+              </button>
+            </Link>
+          </>
+        ) : (
+          <> 
+            //If responsable is not the one connected then:
+            <Link to="/publier">
+              <button className="login-form__button" type="submit">
+                Publier
+              </button>
+            </Link>
+            <Link to="/supprimer-publication">
+              <button className="login-form__button" type="submit">
+                Supprimer
+              </button>
+            </Link>
+            <Link to="/modify-profile">
+              <button className="login-form__button" type="submit">
+                Modifier le profile
+              </button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
