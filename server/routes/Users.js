@@ -41,12 +41,12 @@ router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   const user = await Users.findOne({ where: { username: username } });
-
+  
   if (!user) res.json({ error: "Utilisatuer introuvable" });
 
   else { bcrypt.compare(password, user.password).then((match) => {
     if (!match) res.json({ error: "Nom d'utilisateur ou Mot de passe est incorrect !" });
-    
+  
     else {
       const accessToken = sign(
       { username: user.username, id: user.id },

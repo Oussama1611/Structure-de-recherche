@@ -1,39 +1,23 @@
 module.exports = (sequelize, DataTypes) => {
     const Teams = sequelize.define("Teams", {
-      key: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-      },
-      labo_key: {
-        type: DataTypes.INTEGER,
-        
-        allowNull: false,
-      },
       team: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      responsible: {
-        type: DataTypes.STRING,
       },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
       }
     });
-  
+   // labos association 
     Teams.associate = (models) => {
-      Teams.belongsTo(models.Labos, {
-        foreignKey: "labo_key",
-        targetKey: "key"
-      });
+      Teams.belongsTo(models.Labos);
     };
-    Teams.associate = (models) => {
-      Teams.hasOne(models.Users,{
-         foreignKey: {
-          allowNull: false}
-    }
-    )};
+
+   // users association 
+   Teams.associate = (models) => {
+    Teams.belongsTo(models.Users)};
+
+
     return Teams;
   };

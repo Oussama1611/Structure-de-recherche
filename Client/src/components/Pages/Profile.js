@@ -12,6 +12,7 @@ function Profile() {
   const [email, setEmail] = useState("");
   const [numberphone, setNumberPhone] = useState("");
   const [site_personnel, setSite]= useState("");
+  const [bio, setBio] = useState("");
 
   useEffect(() => {
     axios
@@ -23,18 +24,20 @@ function Profile() {
         setEmail(response.data.email);
         setNumberPhone(response.data.numberphone);
         setSite(response.data.site_personnel);
+        setBio(response.data.bio);
       });
   }, []); 
   //-----------------------------
-  
+ 
   return (
     <div>
       <Card
-
         name={full_name}
+        img = {photo_path}
         tel={numberphone}
         email={email}
         site={site_personnel}
+        bio ={bio}
 
       />
     </div>

@@ -8,13 +8,16 @@ router.get("/", async (req, res) => {
   res.json(listOfTeams);
 });
 
+
 router.get("/responsable-ou-non/:id",validateToken,async(req,res)=> {
-  const {username_id} =req.params.id;
-  const team = await teams.findOne({where :{UserId:username_id}});
-  var bool=false;
-  if(team) bool=!bool;
-  res.json(bool);
+  const username_id =req.params.id;
+  const respo = await Teams.findOne({where :{UserId:username_id}});
+   if(respo) 
+      res.json({etat:"1"});
+  else res.json({etat:"0"});
 });
+
+
 router.post("/", async (req, res) => {
   const team = req.body;
   await Teams.create(team);

@@ -30,7 +30,7 @@ router.post("/setProfilData",validateToken, async (req, res) => {
   res.json(contact);
 });
 
-router.post("/changeProfilData/:id", validateToken,async (req, res) => {
+router.post("/changeProfilData/:id",async (req, res) => {
   const contact = req.body;
   const id = req.params.id;
   await Contacts.update(contact,{where :{id:id} });

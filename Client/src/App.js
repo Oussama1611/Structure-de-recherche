@@ -8,6 +8,7 @@ import Equipes from "./components/Pages/Equipes";
 import Laboratoires from "./components/Pages/Laboratoires";
 import Profile from "./components/Pages/Profile";
 import ForgotPassword from "./components/Pages/ForgotPassword";
+import ModifyProfile from "./components/Pages/ModifyProfile";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
 
@@ -53,6 +54,10 @@ function App() {
           <Route path="/forgot-password">
             <Navbar />
             <ForgotPassword />
+          </Route>
+          <Route path="/modify-profile">
+            <Navbar />
+            <ModifyProfile />
           </Route>
           <AuthContext.Provider value={{ authState, setAuthState }}>
           <Route path="/se-connecter">

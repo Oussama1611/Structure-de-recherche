@@ -3,6 +3,8 @@ const cors = require('cors')
 
 const app = express()
 app.use(express.json());
+app.use(express.static('Photos'));
+app.use(express.static('PDFs'));
 app.use(cors());
 
 
@@ -20,9 +22,6 @@ app.use("/labos", labosRouter);
 
 const teamsRouter = require("./routes/Teams");
 app.use("/teams", teamsRouter);
-
-const membersRouter = require("./routes/Members");
-app.use("/members", membersRouter);
 
 const postsRouter = require("./routes/Posts");
 app.use("/posts", postsRouter);

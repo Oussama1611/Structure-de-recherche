@@ -8,14 +8,12 @@ router.get("/", async (req, res) => {
   res.json(listOfLabos);
 });
 
-router.get("/responsable-ou-non/:id",validateToken,async(req,res)=> {
-  const {username_id} =req.params.id;
-  const user = await Users.findOne({where :{id:username_id}});
-  const username = user.username;
-  const boolean1 = await Labos.findOne({where :{username:username}});
-  var bool=false;
-  if(boolean1) bool=!bool;
-  res.json(bool);
+router.get("/responsable-ou-non/:id",async(req,res)=> {
+  const username_id =req.params.id;
+  const respo = await Labos.findOne({where :{UserId:username_id}});
+  if(respo) 
+      res.json({etat:"1"});
+  else res.json({etat:"0"});
 });
 
 router.post("/", async (req, res) => {
