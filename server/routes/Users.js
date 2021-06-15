@@ -57,16 +57,10 @@ router.post("/login", async (req, res) => {
   }
   });
 
+
+
   router.get("/tokenValidating", validateToken, (req, res) => {
     res.json(req.user);
-  });
-  router.get("/information/:id", async (req, res) => {
-    const id = req.params.id;
-  
-    const info = await Users.findByPk(id, {
-      attributes: { exclude: ["password"] },
-    });
-  
-    res.json(info);
+
   });
 module.exports = router;

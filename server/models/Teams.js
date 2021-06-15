@@ -29,5 +29,11 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "key"
       });
     };
+    Teams.associate = (models) => {
+      Teams.hasOne(models.Users,{
+         foreignKey: {
+          allowNull: false}
+    }
+    )};
     return Teams;
   };

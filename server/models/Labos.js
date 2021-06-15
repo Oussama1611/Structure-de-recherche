@@ -19,6 +19,12 @@ module.exports = (sequelize, DataTypes) => {
       }
       
     });
+    Labos.associate = (models) => {
+      Labos.hasOne(models.Users,{
+         foreignKey: {
+          allowNull: false}
+    }
+    )};
 
     return Labos;
   };

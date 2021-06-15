@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Card from "../Card";
-import { Button } from "../Button";
+
 
 function Profile() {
   let { id } = useParams();
@@ -25,13 +25,13 @@ function Profile() {
         setSite(response.data.site_personnel);
       });
   }, []); 
+  //-----------------------------
   
   return (
     <div>
       <Card
+
         name={full_name}
-        
-        
         tel={numberphone}
         email={email}
         site={site_personnel}

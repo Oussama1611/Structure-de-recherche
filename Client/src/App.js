@@ -46,7 +46,7 @@ function App() {
             <Navbar />
             <Laboratoires />
           </Route>
-          <Route path="/profile/:id">
+          <Route path="/profil/:id">
             <Navbar />
             <Profile />
           </Route>

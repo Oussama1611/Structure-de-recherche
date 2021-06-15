@@ -9,6 +9,7 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [authState, setAuthState] = useState(false);
+  const [id, setId]=useState();
 
   useEffect(() => {
     axios
@@ -22,6 +23,7 @@ function Navbar() {
           setAuthState(false);
         } else {
           setAuthState(true);
+          setId(response.data.id);
         }
       });
   }, []);
@@ -99,7 +101,17 @@ function Navbar() {
           {button && <Button buttonStyle="btn--outline">Se connecter</Button>}
           </>
           ) : (
-            <>{button && <Button onClick={logout} buttonStyle="btn--outline">Déconnecter</Button>} </>
+            <>
+            <Link
+             to={`/profil/${id}`}
+             className="nav-links"
+             onClick={closeMobileMenu}
+             >  
+             Mon Profil
+             </Link>
+            
+            {button && <Button onClick={logout} buttonStyle="btn--outline">Déconnecter</Button>}
+            </>
           )}
         </div>
         </AuthContext.Provider>
