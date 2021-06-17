@@ -26,10 +26,10 @@
 
 .laboratoires {
   background-position: center;
-  background-size: fill;
+  background-size: auto;
   background-repeat: no-repeat;
   color: #fff;
-  font-size: 100px;
+  font-size: 20px;
 }
 
 .se-connecter {
@@ -38,4 +38,112 @@
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
+}
+/*__________________*/
+.App {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  flex-direction: column;
+}
+.post-body {
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  margin: 50px auto;
+  padding: 25px;
+  width: 800px;
+  height: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(39, 12, 12);
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.post .post-title {
+  flex: 20%;
+  border-bottom: 1px solid lightgray;
+  border-radius: 10px;
+  background-color: #2d3436;
+  display: grid;
+  place-content: center;
+  color: white;
+}
+
+.post .post-body {
+  flex: 60%;
+  display: grid;
+  place-content: center;
+}
+
+.post-author {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  flex: 10%;
+  display: grid;
+  place-content: center;
+}
+
+.post .post-footer {
+  flex: 20%;
+  border-top: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  background-color: linear-gradient(
+    90deg,
+    rgb(28, 27, 27) 0%,
+    rgb(26, 23, 23) 100%
+  );
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+.login-form__button {
+  padding: 15px;
+  color: #ffffff;
+  font-weight: bold;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-form__button:active {
+  background: #cac8c5;
+}
+
+.labo {
+  margin: 50px auto;
+  padding: 25px;
+  width: 800px;
+  height: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(39, 12, 12);
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.labo .labo-body {
+  flex: 60%;
+  display: grid;
+  place-content: center;
+}
+
+.labo-name {
+  font-size: larger;
+  text-align: left;
+}
+
+.labo-responsable {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: right;
 }

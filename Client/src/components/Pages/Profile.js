@@ -2,43 +2,42 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Card from "../Card";
-
+import "../Card.css";
 
 function Profile() {
   let { id } = useParams();
+  const [username, setUsername] = useState("");
   const [photo_path, setPhoto] = useState("");
   const [full_name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [numberphone, setNumberPhone] = useState("");
-  const [site_personnel, setSite]= useState("");
+  const [site_personnel, setSite] = useState("");
   const [bio, setBio] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/contact/profil/${id}`)
-      .then((response) => {
-        setName(response.data.full_name);
-        setPhoto(response.data.photo_path);
-        setEmail(response.data.email);
-        setNumberPhone(response.data.numberphone);
-        setSite(response.data.site_personnel);
-        setBio(response.data.bio);
-      });
-  }, []); 
+    axios.get(`http://localhost:3001/contact/profil/${id}`).then((response) => {
+      setUsername(response.data.username);
+      setName(response.data.full_name);
+      setPhoto(response.data.photo_path);
+      setEmail(response.data.email);
+      setNumberPhone(response.data.numberphone);
+      setSite(response.data.site_personnel);
+      setBio(response.data.bio);
+    });
+  }, []);
   //-----------------------------
- 
+
   return (
-    <div>
+    <dvi>
       <Card
         name={full_name}
-        img = {photo_path}
+        img={photo_path}
         tel={numberphone}
         email={email}
         site={site_personnel}
-        bio ={bio}
-
+        bio={bio}
       />
-    </div>
+    </dvi>
   );
 }
 

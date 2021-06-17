@@ -2,7 +2,7 @@
   font-family: sans-serif;
   margin: 0 auto;
   padding: 25px;
-  height: 900px;
+  height: 800px;
   width: 800px;
   background-color: #ffffff;
   text-align: center;
@@ -21,7 +21,7 @@
   padding: 15px 15px;
   background-color: #ffffff;
   margin: 50px 0;
-  height: 500px;
+  height: 400px;
   box-shadow: 0 4px 5px rgb(0, 0, 0);
   text-align: left;
 }
@@ -62,7 +62,8 @@
 
 .info {
   margin: 20px 0;
-  color: #1a7e76;
+  color: #000000;
+  font-size: larger;
 }
 
 .login-form__button {

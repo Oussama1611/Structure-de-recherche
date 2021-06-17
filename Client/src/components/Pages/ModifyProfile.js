@@ -135,17 +135,18 @@ function ModifyProfile() {
           setNumberPhone(event.target.value);
         }}
       />
-      <label>Bio</label>
-      <input
-        className="login-form__input"
-        type="text"
-        name="bio"
-        autoComplete="off"
-        placeholder="Biographie (Ex: Professeur..)"
-        onChange={(event) => {
-          setBio(event.target.value);
-        }}
-      />
+      <textarea
+          cols="100"
+          rows="7"
+          className="login-form__bio"
+          type="text"
+          name="bio"
+          autoComplete="off"
+          placeholder="Biographie (Ex: Professeur..)"
+          onChange={(event) => {
+            setBio(event.target.value);
+          }}
+        />
       <label>Site Personnel</label>
       <input
         className="login-form__input"
@@ -162,6 +163,15 @@ function ModifyProfile() {
       >
         Enregistrer
       </button>
+      <button
+          className="login-form__button"
+          type="submit"
+          onClick={() => {
+            history.push(`/profil/${id}`);
+          }}
+        >
+          Annuler
+        </button>
     </div>
     </AuthContext.Provider>
   );
