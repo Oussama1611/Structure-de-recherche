@@ -162,6 +162,15 @@ function ModifyProfile() {
       >
         Enregistrer
       </button>
+      <button
+          className="login-form__button"
+          type="submit"
+          onClick={() => {
+            history.push(`/profil/${id}`);
+          }}
+        >
+          Annuler
+        </button>
     </div>
     </AuthContext.Provider>
   );
