@@ -6,6 +6,8 @@ import axios from "axios";
 
 function Card(props) {
   const [button, setButton] = useState(true);
+  const [boolean1,setBool1] = useState(false);
+  const [boolean2,setBool2] = useState(false);
   const [id_user, setId ]= useState(); 
 //---------------------------------------------
 
@@ -25,22 +27,23 @@ useEffect(() => {
           setId(response.data.id);
         }
       });
-  }, []);
+  },
 //------------------------
-    const boolean1 = () => {
+    
     axios.get(`http://localhost:3001/labos/responsable-ou-non/${id_user}`)
       .then((response)=>{
-        return response.etat;
-      })};
+        if(response.data.error) setBool1(false);
+        else setBool1(true);
+      }),
   
   //--------------------------
-    const boolean2 = () => {
     axios.get(`http://localhost:3001/teams/responsable-ou-non/${id_user}`)
     .then((response)=>{
-        return response.etat;
-    })};
-
-
+      if(response.data.error) setBool2(false);
+      else setBool2(true);
+    })
+  //----------------------
+  ,[]);
 
   return (
     <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -53,9 +56,8 @@ useEffect(() => {
         <div className="bottom">
           <p className="info">{props.tel}</p>
           <p className="info">{props.email}</p>
-          <p><a className="info" href={props.site}>{props.site}</a></p>
+          <p><a className="info" href={`//${props.site}`}>{props.site}</a></p>
           <p className="info">{props.bio}</p>
-          <p className="info">{id_user}</p>
         </div>
       </div>
       {authState ? (
@@ -74,7 +76,7 @@ useEffect(() => {
             </Link>
           </>
 
-        {(boolean1 || boolean2) ? (
+        { (boolean1 || boolean2) ? (
             <>
             <Link to="/gerer-les-membres">
               <button className="login-form__button" type="submit">

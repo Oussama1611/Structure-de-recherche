@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./ForgotPassword.css";
 import { AuthContext } from "../../helpers/AuthContext";
-
+import FormData from "form-data";
 
 function ModifyProfile() {
-  const [photo_path, setPath] = useState("");
+  const [picture, setPicture] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [numberPhone, setNumberPhone] = useState("");
@@ -38,6 +38,7 @@ function ModifyProfile() {
   let history = useHistory();
   const saveData = ()=>{
     const data = {
+      
       full_name : fullName,
       email : email,
       numberphone : numberPhone,
@@ -57,6 +58,37 @@ function ModifyProfile() {
         }
       });
   }
+  //----------------------------- pic uploading ...
+
+  const Upload_pic =(e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append('photo',picture);
+  const config ={
+    headers:{
+      'content-type':'multipart/form-data',
+      'id': 'id'
+    },
+  };
+  axios.post(`http://localhost:3001/user/change-pic/${id}`,formData,config)
+  .then((response)=>
+  {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.log('err',err);
+  })
+
+};
+
+  const onInputChange = (e) => {
+    setPicture(e.target.files[0])
+  }
+  //-------------------- fonction assemblante
+  const wrapperfunc = (e)=>{
+    saveData(e);
+    Upload_pic(e);
+  }
 
   return (
     <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -64,7 +96,12 @@ function ModifyProfile() {
       <div className="login-form__header">Modifier vos informations</div>
 
       <label>Photo de profile</label>
-      <input className="login-form__input" type="file" name="photo" />
+      <form  >
+      <input className="login-form__input" type="file" name="photo"     
+      onChange={onInputChange}
+      />
+  
+       </form>
       <label>Nom et Prénom</label>
       <input
         className="login-form__input"
@@ -121,7 +158,7 @@ function ModifyProfile() {
         }}
       />
       <button className="login-form__button" type="submit"
-      onClick={saveData}
+      onClick={wrapperfunc}
       >
         Enregistrer
       </button>

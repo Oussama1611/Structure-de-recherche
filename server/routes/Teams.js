@@ -9,12 +9,12 @@ router.get("/", async (req, res) => {
 });
 
 
-router.get("/responsable-ou-non/:id",validateToken,async(req,res)=> {
+router.get("/responsable-ou-non/:id",async(req,res)=> {
   const username_id =req.params.id;
   const respo = await Teams.findOne({where :{UserId:username_id}});
-   if(respo) 
-      res.json({etat:"1"});
-  else res.json({etat:"0"});
+  if(!respo) 
+      res.json({error:"user n'est un respo"});
+  else res.json("voila un respo !");
 });
 
 

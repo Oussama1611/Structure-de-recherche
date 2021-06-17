@@ -3,7 +3,7 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 const router = express.Router();
 const { Contacts,Users,Teams,Labos } = require("../models");
 
-
+//---------------------------------------
 router.post("/", async (req, res) => {
   const contact = req.body;
   await Contacts.create(contact);
@@ -33,7 +33,7 @@ router.post("/setProfilData",validateToken, async (req, res) => {
 router.post("/changeProfilData/:id",async (req, res) => {
   const contact = req.body;
   const id = req.params.id;
-  await Contacts.update(contact,{where :{id:id} });
+  await Contacts.update(contact,{where :{UserId:id} });
   res.json(contact);
 });
 

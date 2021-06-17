@@ -2,16 +2,17 @@ module.exports = (sequelize, DataTypes) => {
     const Contacts = sequelize.define("Contacts", {
       full_name : {
         type : DataTypes.STRING,
-        allowNull : false,
+        allowNull : true,
+        defaultValue: "Mon nom complet"
       },
       photo_path : {
         type: DataTypes.STRING,
-        allowNull:true,
         defaultValue: "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue:"Mon email"
       },
       permanent_or_no :{
         type: DataTypes.BOOLEAN,
@@ -20,13 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       numberphone: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:"Mon numero"
       },
       site_personnel: {
         type : DataTypes.STRING,
         allowNull: true,
+        defaultValue:"Mon site personnel"
       },
       bio: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        defaultValue: "Ma Bio"
       },
       
     });

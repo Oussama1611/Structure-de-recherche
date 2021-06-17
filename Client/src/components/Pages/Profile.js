@@ -6,7 +6,6 @@ import Card from "../Card";
 
 function Profile() {
   let { id } = useParams();
-  const [username, setUsername] = useState("");
   const [photo_path, setPhoto] = useState("");
   const [full_name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,7 +17,6 @@ function Profile() {
     axios
       .get(`http://localhost:3001/contact/profil/${id}`)
       .then((response) => {
-        setUsername(response.data.username);
         setName(response.data.full_name);
         setPhoto(response.data.photo_path);
         setEmail(response.data.email);
