@@ -11,9 +11,9 @@ router.get("/", async (req, res) => {
 router.get("/responsable-ou-non/:id",async(req,res)=> {
   const username_id =req.params.id;
   const respo = await Labos.findOne({where :{UserId:username_id}});
-  if(!respo) 
-      res.json({error:"user n'est un respo"});
-  else res.json("voila un respo");
+  if(respo) 
+      res.json({etat:"1"});
+  else res.json({etat:"0"});
 });
 
 router.post("/", async (req, res) => {
