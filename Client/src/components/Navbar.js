@@ -9,7 +9,7 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [authState, setAuthState] = useState(false);
-  const [id, setId]=useState();
+  const [id, setId] = useState();
 
   useEffect(() => {
     axios
@@ -32,7 +32,7 @@ function Navbar() {
   const closeMobileMenu = () => setClick(false);
   const logout = () => {
     localStorage.removeItem("accessToken");
-  }
+  };
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -48,72 +48,77 @@ function Navbar() {
 
   window.addEventListener("resize", showButton);
   //----------------------
-  
 
   return (
     <>
       <nav className="navbar">
-      <AuthContext.Provider value={{ authState, setAuthState }}>
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            StR
-            <i class="fas fa-microscope"></i>
-          </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
+        <AuthContext.Provider value={{ authState, setAuthState }}>
+          <div className="navbar-container">
+            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+              StR
+              <i class="fas fa-microscope"></i>
+            </Link>
+            <div className="menu-icon" onClick={handleClick}>
+              <i className={click ? "fas fa-times" : "fas fa-bars"} />
+            </div>
+            <ul className={click ? "nav-menu active" : "nav-menu"}>
+              <li className="nav-item">
+                <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                  Accueil
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/Laboratoires"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Laboratoires
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/Equipes"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Equipes
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/Se-connecter"
+                  className="nav-links-mobile"
+                  onClick={closeMobileMenu}
+                >
+                  Se connecter
+                </Link>
+              </li>
+            </ul>
+            {!authState ? (
+              <>
+                {button && (
+                  <Button buttonStyle="btn--outline">Se connecter</Button>
+                )}
+              </>
+            ) : (
+              <>
+                <Link
+                  to={`/profil/${id}`}
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Mon Profile
+                </Link>
+
+                {button && (
+                  <Button onClick={logout} buttonStyle="btn--outline">
+                    Déconnecter
+                  </Button>
+                )}
+              </>
+            )}
           </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Accueil
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/Laboratoires"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Laboratoires
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/Equipes"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Equipes
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/Se-connecter"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Se connecter
-              </Link>
-            </li>
-          </ul>
-          {!authState ? (
-          <> 
-          {button && <Button buttonStyle="btn--outline">Se connecter</Button>}
-          </>
-          ) : (
-            <>
-            <Link
-             to={`/profil/${id}`}
-             className="nav-links"
-             onClick={closeMobileMenu}
-             >  
-             Mon Profil
-             </Link>
-            
-            {button && <Button onClick={logout} buttonStyle="btn--outline">Déconnecter</Button>}
-            </>
-          )}
-        </div>
         </AuthContext.Provider>
       </nav>
     </>
