@@ -70,10 +70,10 @@
   flex: 20%;
   border-bottom: 1px solid lightgray;
   border-radius: 10px;
-  background-color: #2d3436;
+  background-color: #2d362e;
   display: grid;
   place-content: center;
-  color: white;
+  color:sienna;
 }
 
 .post .post-body {
@@ -82,11 +82,13 @@
   place-content: center;
 }
 
-.post-author {
+.post .post-author {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   flex: 10%;
+  text-decoration: none;
   display: grid;
   place-content: center;
+  color: teal;
 }
 
 .post .post-footer {
@@ -119,6 +121,19 @@
 .login-form__button:active {
   background: #cac8c5;
 }
+.new-post {
+  padding: 15px;
+  color: #8ee9e1;
+  font-weight: bold;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  width: 10%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 570px;
+}
+
 
 .labo {
   margin: 50px auto;
@@ -136,14 +151,21 @@
   flex: 60%;
   display: grid;
   place-content: center;
+  margin-top: 20px;
 }
 
-.labo-name {
+.labo .labo-name {
   font-size: larger;
   text-align: left;
+  color: rgb(36, 133, 133);
+  display: inline-block;
+  margin-right: 550px;
+  text-decoration: none;
 }
 
-.labo-responsable {
+.labo .labo-responsable {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: right;
+  display: inline-block;
+  text-decoration: none;
+  color: dodgerblue;
 }

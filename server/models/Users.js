@@ -8,15 +8,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      
     });
     
-    // Users associate Posts 1:M
+    // membres et ses publications
     Users.associate = (models) => {
       Users.hasMany(models.Posts, {
       onDelete: "cascade",
     });
+      Users.belongsTo(models.Teams);
    };
+   
    
     return Users;
   };

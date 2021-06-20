@@ -6,11 +6,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     });
-      ApplicationDomains.associate = (models) => {
-        models.Teams.hasMany(ApplicationDomains,{
-            foreignKey:'key'
-        })
-        ApplicationDomains.belongsTo(models.Teams)
-      };
+      
       return ApplicationDomains;
     };

@@ -9,9 +9,15 @@ router.get("/", async (req, res) => {
 });
 
 
-router.get("/responsable-ou-non/:id",async(req,res)=> {
-  const username_id =req.params.id;
-  const respo = await Teams.findOne({where :{UserId:username_id}});
+router.get("/:laboid", async (req, res) => {
+  const laboId = req.params.laboid;
+  const listOfTeams = await Teams.findAll({where:{LaboId:laboId}});
+  res.json(listOfTeams);
+});
+
+router.get("/responsable-ou-non/:username",async(req,res)=> {
+  const username =req.params.username;
+  const respo = await Teams.findOne({where :{username:username}});
   if(!respo) 
       res.json({error:"user n'est un respo"});
   else res.json("voila un respo !");

@@ -7,17 +7,28 @@ module.exports = (sequelize, DataTypes) => {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      summary : {
+        type: DataTypes.STRING(1234),
+        allowNull: true,
       }
     });
-   // labos association 
-    Teams.associate = (models) => {
-      Teams.belongsTo(models.Labos);
-    };
 
-   // users association 
+   
+     
    Teams.associate = (models) => {
-    Teams.belongsTo(models.Users)};
+    // association users
+     Teams.hasMany(models.Users,{    // pour reperer l'equipe d'un membre
+       onDelete : "cascade",
+     });    
 
+    // application domains
+     Teams.hasMany(models.ApplicationDomains,{
+       onDelete : "cascade"
+     });
 
+     // association labos
+     Teams.belongsTo(models.Labos);
+   }
     return Teams;
   };

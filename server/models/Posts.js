@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       post: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(1234),
         allowNull: false,
       },
       supportfile_path :{
@@ -14,14 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       type: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }
       
     });
   
     return Posts;
-  };
+ };

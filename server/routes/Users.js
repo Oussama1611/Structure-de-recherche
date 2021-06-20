@@ -35,8 +35,6 @@ router.post("/forgot-password", async (req, res)=> {
 })
 
 
-
-
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -57,10 +55,28 @@ router.post("/login", async (req, res) => {
   }
   });
 
-
-
+  
   router.get("/tokenValidating", validateToken, (req, res) => {
     res.json(req.user);
-
   });
+
+
+ router.get("/getId/:username",async (req,res) => {
+   const username = req.params.username;
+   const user = await Users.findOne({ where: {username: username}});
+   const id = user.id
+   res.json({id:id});
+ })
+
+
+ router.get("/:teamid", async (req, res) => {
+  const teamId = req.params.teamid;
+  const listOfMembers = await Users.findAll({where:{UserId:teamId}});
+  res.json(listOfMembers);
+});
+
+
+
+
+
 module.exports = router;

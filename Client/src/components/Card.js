@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Card.css";
 import { AuthContext } from "../helpers/AuthContext";
 import axios from "axios";
 
 function Card(props) {
-  const [button, setButton] = useState(true);
+
   const [id_user, setId] = useState();
+  const [username, setUsername] = useState("");
+  const [bool1, setBool1] = useState(false);
+  const [bool2, setBool2] = useState(false);
+  
   //---------------------------------------------
 
   const [authState, setAuthState] = useState(false);
@@ -23,27 +27,39 @@ function Card(props) {
         } else {
           setAuthState(true);
           setId(response.data.id);
+          setUsername(response.data.username)
         }
       });
   }, []);
   //------------------------
   const boolean1 = () => {
     axios
-      .get(`http://localhost:3001/labos/responsable-ou-non/${id_user}`)
+      .get(`http://localhost:3001/labos/responsable-ou-non/${username}`,{
+        headers: {
+          'username' : username
+        }
+      })
       .then((response) => {
-        return response.etat;
+        if(response.data.error) setBool1(false);
+        else setBool1(true);
       });
   };
 
   //--------------------------
   const boolean2 = () => {
     axios
-      .get(`http://localhost:3001/teams/responsable-ou-non/${id_user}`)
+      .get(`http://localhost:3001/teams/responsable-ou-non/${username}`,{
+        headers: {
+          'username' : username
+        }
+      })
       .then((response) => {
-        return response.etat;
+        if(response.data.error) setBool2(false);
+        else setBool2(true);
       });
   };
-
+  boolean1(); boolean2();
+  
   return (
     <AuthContext.Provider value={{ authState, setAuthState }}>
       <div className="card_container">
@@ -63,10 +79,10 @@ function Card(props) {
             <p className="info">{props.bio}</p>
           </div>
         </div>
-        {authState ? (
+        { (authState && props.id===id_user) ? (
           <>
             <>
-              <Link to="/publier">
+              <Link to={`/PostById/${id_user}`}>
                 <button className="login-form__button" type="submit">
                   Gérer mes publications
                 </button>
@@ -79,14 +95,12 @@ function Card(props) {
               </Link>
             </>
 
-            {boolean1 || boolean2 ? (
-              <>
-                <Link to="/gerer-les-membres">
+            {(bool1 || bool2 || id_user===1) ? (
+                
                   <button className="login-form__button" type="submit">
-                    Gérer mon laboratoire / mon équipe
+                    Gérer mon laboratoire / mon équipe / les membres
                   </button>
-                </Link>
-              </>
+              
             ) : (
               <div></div>
             )}

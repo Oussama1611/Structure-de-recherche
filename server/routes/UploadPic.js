@@ -1,6 +1,6 @@
 const express = require('express');
-const { uploadImage } = require("../controllers/userController");
-const { Contacts } = require("../models");
+const { uploadImage, uploadFile } = require("../controllers/userController");
+const { Posts, Contacts } = require("../models");
 
 const router = express.Router();
 
@@ -12,5 +12,13 @@ router.post("/change-pic/:id", uploadImage ,async (req,res) =>{
     console.log(req.file);
     console.log("Photo Uploaded !");
 });
+router.post("/upload-file",uploadFile,async (req,res) =>{
+    const title = req.headers.title;
+    const post = await Posts.findOne({where: {title:title}});
+    post.supportfile_path = req.file.filename;
+    post.save();
+    console.log(req.file);
+    console.log("File Uploaded !");
+})
 
 module.exports = router;

@@ -17,6 +17,20 @@ const storage = multer.diskStorage({
   }
 })
 upload = multer({ storage: storage });
-exports.uploadImage = upload.single('photo');
+// uploading files using multer
+const storage2 = multer.diskStorage({
+  destination:(req, file, cb) => {
+    cb(null, '../Client/public/');
+  },
+  filename : async (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const id =uuid();
+    const filePath = `/PDFs/${id}${ext}`;
+    cb(null, filePath);
+  }
+})
+upload2 = multer({storage: storage2})
 
+exports.uploadImage = upload.single('photo');
+exports.uploadFile = upload2.single('file');
 

@@ -37,9 +37,8 @@ router.post("/changeProfilData/:id",async (req, res) => {
   res.json(contact);
 });
 
-router.get("/profil/:id", async (req, res) => {
+router.get("/profil/:id",async (req, res) => {
   const id = req.params.id;
-
   const basicInfo = await Contacts.findOne(
     {where:{UserId:id}}
   );
