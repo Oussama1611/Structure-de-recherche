@@ -1,46 +1,63 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import "../../App.css";
 
 
 function Labo() {
   
   let { id } = useParams();
-  const [laboName, setLaboName] = useState();
+  const [laboName, setLaboName] = useState("");
+  const [respoName, setRespoName] = useState("");
+  const [respoUsername, setRespUsername] = useState("");
+  const [respoId,setRespoId] = useState();
   const [listOfTeams, setListOfTeams] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:3001/labos/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/labos/ById/${id}`).then((response) => {
       setLaboName(response.data.laboratoire);
+      setRespoName(response.data.full_name);
+      setRespUsername(response.data.username);
     });
-  }, []);
+  });
   //------------------------
   useEffect(() => {
     axios.get(`http://localhost:3001/teams/${id}`).then((response) => {
       setListOfTeams(response.data);
     });
   }, []);
+  // Extraire le Id de respo
+  let history = useHistory();
+  function GetId() {
+    axios.get(`http://localhost:3001/auth/getId/${respoUsername}`)
+    .then((response) => {
+      setRespoId(response.data.id)
+    });
+  }
+  GetId();
+  function push() {
+    history.push(`/profil/${respoId}`);
+   };
 
 
   return (
-    <div>
          <div className="labo">
             <div className="post-title">
               <a className="post-title" >{laboName}</a>
+              Responsable:
+              <button className="post-author" onClick={() => push()}>{respoName}</button>
               Les equipes :
               <div className="post-body">
                 {listOfTeams.map((value, key) =>{
                     return (
-                    <a href={`http://localhost:3000/equipe/${value.id}`}> {value.team}</a>
-                );
-                })
+                    <Link to={`/equipes/${value.id}`}>
+                      <a className="labo-name" >{value.team}</a>
+                    </Link> 
+                )})
                 }
               </div>
             </div>
             
           </div>
-
-    </div>
   )
 }
 

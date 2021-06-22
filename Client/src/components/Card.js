@@ -10,6 +10,7 @@ function Card(props) {
   const [username, setUsername] = useState("");
   const [bool1, setBool1] = useState(false);
   const [bool2, setBool2] = useState(false);
+  const [idItem, setIdItem] = useState();
   
   //---------------------------------------------
 
@@ -40,8 +41,8 @@ function Card(props) {
         }
       })
       .then((response) => {
-        if(response.data.error) setBool1(false);
-        else setBool1(true);
+        if(response.data.error) setBool1(false);  
+        else { setBool1(true); setIdItem(response.data.id); }
       });
   };
 
@@ -54,8 +55,8 @@ function Card(props) {
         }
       })
       .then((response) => {
-        if(response.data.error) setBool2(false);
-        else setBool2(true);
+        if(response.data.error)  setBool2(false);
+        else { setBool2(true); setIdItem(response.data.id); }
       });
   };
   boolean1(); boolean2();
@@ -95,12 +96,36 @@ function Card(props) {
               </Link>
             </>
 
-            {(bool1 || bool2 || id_user===1) ? (
-                
+            {id_user===1 ? (
+              <>
+                <Link to="/GererLabos">
                   <button className="login-form__button" type="submit">
-                    Gérer mon laboratoire / mon équipe / les membres
+                    Gérer mes laboratoires 
                   </button>
-              
+                </Link>
+                </>
+            ) : (
+              <div></div>
+            )}
+            {bool1 ? (
+               <>
+                <Link to={`/GererTeams/${idItem}`}>
+                  <button className="login-form__button" type="submit">
+                    Gérer mes équipes  
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <div></div>
+            )}
+            {bool2 ? (
+              <>
+                <Link to={`/GererMembres/${idItem}`}>
+                  <button className="login-form__button" type="submit">
+                    Gérer les membres
+                  </button>
+                </Link>
+              </>  
             ) : (
               <div></div>
             )}

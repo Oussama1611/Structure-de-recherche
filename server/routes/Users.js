@@ -6,11 +6,13 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 const { sign } = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password,full_name,TeamId } = req.body;
   bcrypt.hash(password, 10).then((hash) => {
     Users.create({
       username: username,
       password: hash,
+      full_name:full_name,
+      TeamId:TeamId
     });
     res.json("SUCCESS");
   });
@@ -64,17 +66,24 @@ router.post("/login", async (req, res) => {
  router.get("/getId/:username",async (req,res) => {
    const username = req.params.username;
    const user = await Users.findOne({ where: {username: username}});
-   const id = user.id
+   const id = user.id;
    res.json({id:id});
- })
-
+ });
 
  router.get("/:teamid", async (req, res) => {
   const teamId = req.params.teamid;
-  const listOfMembers = await Users.findAll({where:{UserId:teamId}});
+  const listOfMembers = await Users.findAll({where:{TeamId:teamId}});
   res.json(listOfMembers);
 });
 
+router.delete("/:id", validateToken, async (req, res) => {
+  const id = req.params.id;
+  await Users.destroy({
+    where: {
+      id: id,
+    },
+  })
+});
 
 
 

@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       summary : {
         type: DataTypes.STRING(1234),
         allowNull: true,
+      },
+      full_name :{ 
+        type: DataTypes.STRING,
+        allowNull:true,
       }
     });
 
@@ -20,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     // association users
      Teams.hasMany(models.Users,{    // pour reperer l'equipe d'un membre
        onDelete : "cascade",
+       foreignKey : {
+         name: 'TeamId',
+         allowNull: true
+       }
      });    
 
     // application domains

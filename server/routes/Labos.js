@@ -8,17 +8,18 @@ router.get("/", async (req, res) => {
   res.json(listOfLabos);
 });
 
-router.get("/:laboid", async (req,res) => {
+router.get("/byId/:laboid", async (req,res) => {
   const laboId = req.params.laboid;
-  const labo = Labos.findOne({where : {id : laboId}})
+  const labo = await Labos.findOne({where : {id : laboId}})
   res.json(labo);
-})
+});
+
 router.get("/responsable-ou-non/:username",async(req,res)=> {
   const username =req.params.username;
   const respo = await Labos.findOne({where :{username:username}});
   if(!respo) 
       res.json({error:"user n'est un respo"});
-  else res.json("voila un respo");
+  else res.json(respo);
 });
 
 router.post("/", async (req, res) => {
@@ -27,14 +28,14 @@ router.post("/", async (req, res) => {
   res.json(labo);
 });
 
-/*router.delete("/:laboId", validateToken, async (req, res) => {
+router.delete("/:laboId", validateToken, async (req, res) => {
   const laboId = req.params.laboId;
   await Labos.destroy({
     where: {
       id: laboId,
     },
   })
-}); */
+}); 
 
 
 module.exports = router;

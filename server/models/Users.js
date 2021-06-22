@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      full_name: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     });
     
     // membres et ses publications

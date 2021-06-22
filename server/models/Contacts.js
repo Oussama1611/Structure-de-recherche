@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue:"Mon site personnel"
       },
       bio: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(1234),
         defaultValue: "Ma Bio"
       },
       

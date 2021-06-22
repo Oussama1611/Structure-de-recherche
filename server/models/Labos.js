@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       summary : {
         type: DataTypes.STRING(1234),
         allowNull:true,
+      },
+      full_name :{
+        type: DataTypes.STRING,
+        allowNull:true,
       }
      });
     // teams association 

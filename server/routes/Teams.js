@@ -8,6 +8,12 @@ router.get("/", async (req, res) => {
   res.json(listOfTeams);
 });
 
+router.get("/user/:id", async (req,res)=>{
+  const id = req.params.id;
+  const equipe = await Teams.findOne({where : {id:id}});
+  res.json(equipe);
+})
+
 
 router.get("/:laboid", async (req, res) => {
   const laboId = req.params.laboid;
@@ -20,7 +26,7 @@ router.get("/responsable-ou-non/:username",async(req,res)=> {
   const respo = await Teams.findOne({where :{username:username}});
   if(!respo) 
       res.json({error:"user n'est un respo"});
-  else res.json("voila un respo !");
+  else res.json(respo);
 });
 
 
@@ -29,5 +35,16 @@ router.post("/", async (req, res) => {
   await Teams.create(team);
   res.json(team);
 });
+
+
+router.delete("/:teamId", validateToken, async (req, res) => {
+  const teamId = req.params.teamId;
+  await Teams.destroy({
+    where: {
+      id: teamId,
+    },
+  })
+});
+
 
 module.exports = router;

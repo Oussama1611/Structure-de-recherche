@@ -22,13 +22,6 @@ router.post("/create-new-member",validateToken,async (req, res)=>{
   else res.json({error : "Seul un responsable peut creer un membre !!"});
 });
 
-router.post("/setProfilData",validateToken, async (req, res) => {
-  const contact = req.body;
-  const username = req.user.username;
-  contact.username = username;
-  await Contacts.create(contact);
-  res.json(contact);
-});
 
 router.post("/changeProfilData/:id",async (req, res) => {
   const contact = req.body;

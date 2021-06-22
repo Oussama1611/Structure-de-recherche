@@ -10,7 +10,14 @@ import ForgotPassword from "./components/Pages/ForgotPassword";
 import ModifyProfile from "./components/Pages/ModifyProfile";
 import PostById from "./components/Pages/PostsManagement";
 import NewPost from "./components/Pages/NewPost";
-import Labo from "./components/Pages/LaboById"
+import Labo from "./components/Pages/LaboById";
+import Team from "./components/Pages/TeamById";
+import GererLabos from "./components/Pages/GererLabos";
+import GererTeams from "./components/Pages/GererTeams";
+import GererMembres from "./components/Pages/GererMembres";
+import NewMembre from "./components/Pages/AjouterMembre";
+import NewLabo from "./components/Pages/AjouterLabo";
+import NewTeam from "./components/Pages/AjouterTeam";
 import { AuthContext } from "./helpers/AuthContext";
 import axios from "axios";
 
@@ -39,13 +46,21 @@ useEffect(() => {
             <Navbar />
             <Home />
           </Route>
-          <Route path="/equipes">
+          <Route exact path="/equipes">
             <Navbar />
             <Equipes />
           </Route>
-          <Route path="/laboratoires">
+          <Route exact path="/equipes/:id">
+            <Navbar />
+            <Team />
+          </Route>
+          <Route exact path="/laboratoires">
             <Navbar />
             <Laboratoires />
+          </Route>
+          <Route exact path="/laboratoires/:id">
+            <Navbar />
+            <Labo />
           </Route>
           <Route path="/profil/:id">
             <Navbar />
@@ -67,6 +82,31 @@ useEffect(() => {
             <Navbar />
             <ModifyProfile />
           </Route>
+          <Route path="/GererLabos">
+            <Navbar />
+            <GererLabos />
+          </Route>
+          <Route path="/GererTeams/:idLabo">
+            <Navbar />
+            <GererTeams />
+          </Route>
+          <Route path="/GererMembres/:idTeam">
+            <Navbar />
+            <GererMembres />
+          </Route>
+          <Route exact path="/NewLabo">
+            <Navbar />
+            <NewLabo />
+          </Route>
+          <Route exact path="/NewTeam/:idLabo">
+            <Navbar />
+            <NewTeam />
+          </Route>
+          <Route exact path="/NewMembre/:idTeam">
+            <Navbar />
+            <NewMembre />
+          </Route>
+          
           <AuthContext.Provider value={{ authState, setAuthState }}>
             <Route path="/se-connecter">
               <Navbar />
