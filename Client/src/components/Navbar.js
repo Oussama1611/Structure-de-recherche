@@ -95,7 +95,7 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
-            { !authState ? (
+            {!authState ? (
               <>
                 {button && (
                   <Button buttonStyle="btn--outline">Se connecter</Button>
@@ -108,7 +108,7 @@ function Navbar() {
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  Mon Profil
+                  Mon Profile
                 </Link>
 
                 {button && (
