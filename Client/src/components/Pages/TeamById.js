@@ -3,13 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../App.css";
 
-
 function Team() {
-  
   let { id } = useParams();
   const [teamName, setTeamName] = useState("");
   const [listOfMembres, setListOfMembres] = useState([]);
-  const [nameRespo, setNameRespo] = useState(""); 
+  const [nameRespo, setNameRespo] = useState("");
   //----------------
   useEffect(() => {
     axios.get(`http://localhost:3001/auth/${id}`).then((response) => {
@@ -20,34 +18,32 @@ function Team() {
   useEffect(() => {
     axios.get(`http://localhost:3001/teams/user/${id}`).then((response) => {
       setTeamName(response.data.team);
-      setNameRespo(response.data.full_name);    // retreive the username of respo
+      setNameRespo(response.data.full_name); // retreive the username of respo
     });
   });
 
-  //------------------------ 
-  
+  //------------------------
+
   return (
-         <div className="labo">
-            <div className="post-title">
-              L'equipe :
-              <p className="post-title" >{teamName}</p>
-              Responsable:
-              <p className="post-title" > {nameRespo}</p>
-              Les membres :
-              <div className="post-body">
-                {listOfMembres.map((value, key) =>{
-                    return (
-                    <Link to={`/profil/${value.id}`}>
-                      <a className="labo-name" >{value.full_name}</a>
-                    </Link> 
-                )
-                })
-                }
-              </div>
-            </div>
-            
-          </div>
-  )
+    <div className="labo-by-id">
+      <div className="labo-title">L'equipe : {teamName}</div>
+      <div className="labo-responsable">
+        Responsable:
+        {nameRespo}
+      </div>
+
+      <div className="labo-body">
+        Les membres :
+        {listOfMembres.map((value, key) => {
+          return (
+            <Link to={`/profil/${value.id}`}>
+              <a className="labo-name">{value.full_name}</a>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default Team;
