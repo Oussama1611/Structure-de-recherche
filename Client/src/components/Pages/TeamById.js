@@ -26,7 +26,7 @@ function Team() {
 
   return (
     <div className="labo-by-id">
-      <div className="labo-title">L'equipe : {teamName}</div>
+      <div className="labo-title">L'équipe : {teamName}</div>
       <div className="labo-responsable">
         Responsable:
         {nameRespo}
@@ -37,7 +37,7 @@ function Team() {
         {listOfMembres.map((value, key) => {
           return (
             <Link to={`/profil/${value.id}`}>
-              <a className="labo-name">{value.full_name}</a>
+              <a >{value.full_name}</a>
             </Link>
           );
         })}

@@ -50,11 +50,11 @@ function Labo() {
       </div>
 
       <div className="labo-body">
-        Les equipes :
+        Les équipes :
         {listOfTeams.map((value, key) => {
           return (
             <Link to={`/equipes/${value.id}`}>
-              <a className="labo-name">{value.team}</a>
+              <a >{value.team}</a>
             </Link>
           );
         })}

@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         defaultValue:"Mon email"
       },
-      permanent_or_no :{
-        type: DataTypes.BOOLEAN,
-        allowNull: true,
-      },
       numberphone: {
         type: DataTypes.STRING,
         allowNull: true,

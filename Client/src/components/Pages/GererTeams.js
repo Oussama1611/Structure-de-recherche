@@ -67,7 +67,7 @@ function GererTeams() {
       })}
       <div className="login-container">
         <Link to={`/NewTeam/${idLabo}`}>
-          <button className="login-form__button">Ajouter une equipe</button>
+          <button className="login-form__button">Ajouter une équipe</button>
         </Link>
       </div>
     </div>

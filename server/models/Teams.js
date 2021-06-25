@@ -30,11 +30,6 @@ module.exports = (sequelize, DataTypes) => {
        }
      });    
 
-    // application domains
-     Teams.hasMany(models.ApplicationDomains,{
-       onDelete : "cascade"
-     });
-
      // association labos
      Teams.belongsTo(models.Labos);
    }
